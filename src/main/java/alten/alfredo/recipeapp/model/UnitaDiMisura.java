@@ -11,7 +11,7 @@ public class UnitaDiMisura {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String unitàMisura;
+    private String udm;
 
     //relazione 1:1 unidirezionale il che significa che non dichiaro nessun attributo della classe concorrente
 
@@ -23,12 +23,12 @@ public class UnitaDiMisura {
         this.id = id;
     }
 
-    public String getUnitàMisura() {
-        return unitàMisura;
+    public String getUdm() {
+        return udm;
     }
 
-    public void setUnitàMisura(String unitàMisura) {
-        this.unitàMisura = unitàMisura;
+    public void setUdm(String unitàMisura) {
+        this.udm = unitàMisura;
     }
 
 }
