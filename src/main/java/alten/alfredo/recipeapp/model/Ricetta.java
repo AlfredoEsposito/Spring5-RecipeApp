@@ -1,5 +1,7 @@
 package alten.alfredo.recipeapp.model;
 
+import alten.alfredo.recipeapp.enumeration.Difficolta;
+
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
@@ -31,6 +33,16 @@ public class Ricetta {
     //l'attributo mappedby indica che la chiave esterna è nell'entità concorrente
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "ricetta")
     private Set<Ingrediente> ingredienti = new HashSet<>();
+
+    @Enumerated(value = EnumType.STRING)
+    private Difficolta difficolta;
+
+    //relazione n:n bidirezionale
+    //andiamo a creare una join table definendo gli id
+    @ManyToMany
+    @JoinTable(name = "Ricetta_Categoria",
+        joinColumns = @JoinColumn(name = "id_ricetta"), inverseJoinColumns = @JoinColumn(name = "id_categoria"))
+    private Set<Categoria> categorie;
 
     public Long getId() {
         return id;
@@ -110,5 +122,29 @@ public class Ricetta {
 
     public void setNote(Note note) {
         this.note = note;
+    }
+
+    public Set<Ingrediente> getIngredienti() {
+        return ingredienti;
+    }
+
+    public void setIngredienti(Set<Ingrediente> ingredienti) {
+        this.ingredienti = ingredienti;
+    }
+
+    public Difficolta getDifficolta() {
+        return difficolta;
+    }
+
+    public void setDifficolta(Difficolta difficolta) {
+        this.difficolta = difficolta;
+    }
+
+    public Set<Categoria> getCategorie() {
+        return categorie;
+    }
+
+    public void setCategorie(Set<Categoria> categorie) {
+        this.categorie = categorie;
     }
 }
