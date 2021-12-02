@@ -1,9 +1,9 @@
-INSERT INTO categoria(nome) VALUES ('Cucina Italiana');
-INSERT INTO categoria(nome) VALUES ('Cucina Messicana');
-INSERT INTO categoria(nome) VALUES ('Cucina Greca');
-INSERT INTO categoria(nome) VALUES ('Fast Food');
-
-INSERT INTO unita_di_misura(udm) VALUES ('gr');
-INSERT INTO unita_di_misura(udm) VALUES ('kg');
-INSERT INTO unita_di_misura(udm) VALUES ('ml');
-INSERT INTO unita_di_misura(udm) VALUES ('l');
+INSERT INTO categoria (nome) VALUES ('American');
+INSERT INTO categoria (nome) VALUES ('Italian');
+INSERT INTO categoria (nome) VALUES ('Mexican');
+INSERT INTO categoria (nome) VALUES ('Fast Food');
+INSERT INTO unita_di_misura (udm) VALUES ('Teaspoon');
+INSERT INTO unita_di_misura (udm) VALUES ('Tablespoon');
+INSERT INTO unita_di_misura (udm) VALUES ('Cup');
+INSERT INTO unita_di_misura (udm) VALUES ('Pinch');
+INSERT INTO unita_di_misura (udm) VALUES ('Ounce');
