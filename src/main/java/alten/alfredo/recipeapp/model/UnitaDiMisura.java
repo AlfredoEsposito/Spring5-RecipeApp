@@ -1,10 +1,13 @@
 package alten.alfredo.recipeapp.model;
 
+import lombok.Data;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+@Data
 @Entity
 public class UnitaDiMisura {
 
@@ -14,21 +17,5 @@ public class UnitaDiMisura {
     private String udm;
 
     //relazione 1:1 unidirezionale il che significa che non dichiaro nessun attributo della classe concorrente
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getUdm() {
-        return udm;
-    }
-
-    public void setUdm(String unitàMisura) {
-        this.udm = unitàMisura;
-    }
 
 }

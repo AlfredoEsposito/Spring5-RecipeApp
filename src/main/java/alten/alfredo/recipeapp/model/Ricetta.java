@@ -1,11 +1,13 @@
 package alten.alfredo.recipeapp.model;
 
 import alten.alfredo.recipeapp.enumeration.Difficolta;
+import lombok.Data;
 
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
+@Data
 @Entity
 public class Ricetta {
 
@@ -45,107 +47,4 @@ public class Ricetta {
         joinColumns = @JoinColumn(name = "id_ricetta"), inverseJoinColumns = @JoinColumn(name = "id_categoria"))
     private Set<Categoria> categorie;
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getDescrizione() {
-        return descrizione;
-    }
-
-    public void setDescrizione(String descrizione) {
-        this.descrizione = descrizione;
-    }
-
-    public Integer getTempoPreparazione() {
-        return tempoPreparazione;
-    }
-
-    public void setTempoPreparazione(Integer tempoPreparazione) {
-        this.tempoPreparazione = tempoPreparazione;
-    }
-
-    public Integer getTempoCottura() {
-        return tempoCottura;
-    }
-
-    public void setTempoCottura(Integer tempoCottura) {
-        this.tempoCottura = tempoCottura;
-    }
-
-    public Integer getDosi() {
-        return dosi;
-    }
-
-    public void setDosi(Integer dosi) {
-        this.dosi = dosi;
-    }
-
-    public String getUrl() {
-        return url;
-    }
-
-    public void setUrl(String url) {
-        this.url = url;
-    }
-
-    public String getDirections() {
-        return directions;
-    }
-
-    public void setDirections(String directions) {
-        this.directions = directions;
-    }
-
-    public String getSource() {
-        return source;
-    }
-
-    public void setSource(String source) {
-        this.source = source;
-    }
-
-    public Byte[] getImmagine() {
-        return immagine;
-    }
-
-    public void setImmagine(Byte[] immagine) {
-        this.immagine = immagine;
-    }
-
-    public Note getNote() {
-        return note;
-    }
-
-    public void setNote(Note note) {
-        this.note = note;
-    }
-
-    public Set<Ingrediente> getIngredienti() {
-        return ingredienti;
-    }
-
-    public void setIngredienti(Set<Ingrediente> ingredienti) {
-        this.ingredienti = ingredienti;
-    }
-
-    public Difficolta getDifficolta() {
-        return difficolta;
-    }
-
-    public void setDifficolta(Difficolta difficolta) {
-        this.difficolta = difficolta;
-    }
-
-    public Set<Categoria> getCategorie() {
-        return categorie;
-    }
-
-    public void setCategorie(Set<Categoria> categorie) {
-        this.categorie = categorie;
-    }
 }

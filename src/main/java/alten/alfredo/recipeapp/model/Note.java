@@ -1,7 +1,10 @@
 package alten.alfredo.recipeapp.model;
 
+import lombok.Data;
+
 import javax.persistence.*;
 
+@Data
 @Entity
 public class Note {
 
@@ -19,27 +22,4 @@ public class Note {
     @OneToOne
     private Ricetta ricetta;
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Ricetta getRicetta() {
-        return ricetta;
-    }
-
-    public void setRicetta(Ricetta ricetta) {
-        this.ricetta = ricetta;
-    }
-
-    public String getNoteRicetta() {
-        return noteRicetta;
-    }
-
-    public void setNoteRicetta(String noteRicetta) {
-        this.noteRicetta = noteRicetta;
-    }
 }

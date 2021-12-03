@@ -1,8 +1,11 @@
 package alten.alfredo.recipeapp.model;
 
+import lombok.Data;
+
 import javax.persistence.*;
 import java.util.Set;
 
+@Data
 @Entity
 public class Categoria {
 
@@ -16,27 +19,4 @@ public class Categoria {
     @ManyToMany(mappedBy = "categorie")
     private Set<Ricetta> ricette;
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public Set<Ricetta> getRicette() {
-        return ricette;
-    }
-
-    public void setRicette(Set<Ricetta> ricette) {
-        this.ricette = ricette;
-    }
 }

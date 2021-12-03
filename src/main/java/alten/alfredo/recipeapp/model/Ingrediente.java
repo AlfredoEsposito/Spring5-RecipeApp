@@ -1,8 +1,11 @@
 package alten.alfredo.recipeapp.model;
 
+import lombok.Data;
+
 import javax.persistence.*;
 import java.math.BigDecimal;
 
+@Data
 @Entity
 public class Ingrediente {
 
@@ -20,43 +23,4 @@ public class Ingrediente {
     @OneToOne(fetch = FetchType.EAGER)
     private UnitaDiMisura unitaDiMisura;
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getDescrizione() {
-        return descrizione;
-    }
-
-    public void setDescrizione(String descrizione) {
-        this.descrizione = descrizione;
-    }
-
-    public BigDecimal getQuantita() {
-        return quantita;
-    }
-
-    public void setQuantita(BigDecimal quantita) {
-        this.quantita = quantita;
-    }
-
-    public Ricetta getRicetta() {
-        return ricetta;
-    }
-
-    public void setRicetta(Ricetta ricetta) {
-        this.ricetta = ricetta;
-    }
-
-    public UnitaDiMisura getUnitaDiMisura() {
-        return unitaDiMisura;
-    }
-
-    public void setUnitaDiMisura(UnitaDiMisura unitaDiMisura) {
-        this.unitaDiMisura = unitaDiMisura;
-    }
 }
