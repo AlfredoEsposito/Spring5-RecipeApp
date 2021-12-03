@@ -1,34 +1,22 @@
 package alten.alfredo.recipeapp.controllers;
 
-import alten.alfredo.recipeapp.model.Categoria;
-import alten.alfredo.recipeapp.model.UnitaDiMisura;
-import alten.alfredo.recipeapp.repositories.CategoriaRepository;
-import alten.alfredo.recipeapp.repositories.UnitaDiMisuraRepository;
+import alten.alfredo.recipeapp.services.RicettaService;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-
-import java.util.Optional;
 
 @Controller
 public class IndexController {
 
-    private CategoriaRepository categoriaRepository;
-    private UnitaDiMisuraRepository unitaDiMisuraRepository;
+    private final RicettaService ricettaService;
 
-    public IndexController(CategoriaRepository categoriaRepository, UnitaDiMisuraRepository unitaDiMisuraRepository) {
-        this.categoriaRepository = categoriaRepository;
-        this.unitaDiMisuraRepository = unitaDiMisuraRepository;
+    public IndexController(RicettaService ricettaService) {
+        this.ricettaService = ricettaService;
     }
 
     @RequestMapping({"","/", "/index", "/index.html"})
-    public String getIndexPage(){
-
-        Optional<Categoria> idCategoria = categoriaRepository.findByNome("American");
-        Optional<UnitaDiMisura> idUdm = unitaDiMisuraRepository.findByUdm("Ounce");
-
-        System.out.println(idCategoria.get().getId());
-        System.out.println(idUdm.get().getId());
-
+    public String getIndexPage(Model model){
+        model.addAttribute("ricette", ricettaService.getRicette());
         return "index";
     }
 }
