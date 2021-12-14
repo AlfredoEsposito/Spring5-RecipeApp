@@ -23,4 +23,20 @@ public class Ingrediente {
     @OneToOne(fetch = FetchType.EAGER)
     private UnitaDiMisura unitaDiMisura;
 
+    public Ingrediente() {
+    }
+
+    public Ingrediente(String descrizione, BigDecimal quantita, UnitaDiMisura unitaDiMisura) {
+        this.descrizione = descrizione;
+        this.quantita = quantita;
+        this.unitaDiMisura = unitaDiMisura;
+    }
+
+    public Ingrediente(String descrizione, BigDecimal quantita, UnitaDiMisura unitaDiMisura, Ricetta ricetta) {
+        this.descrizione = descrizione;
+        this.quantita = quantita;
+        this.unitaDiMisura = unitaDiMisura;
+        this.ricetta = ricetta;
+    }
+
 }

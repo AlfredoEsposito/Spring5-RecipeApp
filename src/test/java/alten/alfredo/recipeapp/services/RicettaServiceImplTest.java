@@ -1,5 +1,7 @@
 package alten.alfredo.recipeapp.services;
 
+import alten.alfredo.recipeapp.converters.RicettaCommandToRicetta;
+import alten.alfredo.recipeapp.converters.RicettaToRicettaCommand;
 import alten.alfredo.recipeapp.model.Ricetta;
 import alten.alfredo.recipeapp.repositories.RicettaRepository;
 import org.junit.jupiter.api.BeforeEach;
@@ -22,10 +24,16 @@ class RicettaServiceImplTest {
     @Mock
     RicettaRepository ricettaRepository;
 
+    @Mock
+    RicettaToRicettaCommand ricettaToRicettaCommand;
+
+    @Mock
+    RicettaCommandToRicetta ricettaCommandToRicetta;
+
     @BeforeEach
     void setUp() {
         MockitoAnnotations.initMocks(this);
-        ricettaServiceImpl = new RicettaServiceImpl(ricettaRepository);
+        ricettaServiceImpl = new RicettaServiceImpl(ricettaRepository, ricettaToRicettaCommand, ricettaCommandToRicetta);
     }
 
     @Test
