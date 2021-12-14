@@ -18,7 +18,7 @@ public class RicettaController {
     //questo metodo mostra una ricetta per l'id, che va specificato nel @RequestMapping tra parentesi graffe dopo il percorso
     @RequestMapping("/ricetta/show/{id}")
     public String getRicettaById(@PathVariable String id, Model model){
-        model.addAttribute("ricetta", ricettaService.findById(new Long(id)));
+        model.addAttribute("ricetta", ricettaService.findById(Long.valueOf(id)));
         return "ricetta/show";
     }
 }

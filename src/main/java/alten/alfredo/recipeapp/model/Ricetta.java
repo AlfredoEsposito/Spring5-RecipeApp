@@ -19,11 +19,12 @@ public class Ricetta {
     private String descrizione;
     private Integer tempoPreparazione;
     private Integer tempoCottura;
-    private Integer dosi;
+    private Integer porzioni;
     private String url;
+
     @Lob
     private String directions;
-    private String source;
+
     //L'annotation @Lob indica un attributo di un'entità di grandi dimensioni. Ha due varianti : CLOB e BLOB
     @Lob
     private Byte[] immagine;
