@@ -19,33 +19,39 @@ class UnitaDiMisuraRepositoryTest {
     UnitaDiMisuraRepository udmRepository;
 
     @Test
-    void findByUdmTeaspoon() {
-        Optional<UnitaDiMisura> udmOptional =  udmRepository.findByUdm("Teaspoon");
-        assertEquals("Teaspoon", udmOptional.get().getUdm());
+    void findByUdmGrammi() {
+        Optional<UnitaDiMisura> udmOptional =  udmRepository.findByUdm("grammi");
+        assertEquals("grammi", udmOptional.get().getUdm());
     }
 
     @Test
-    void findByUdmTablespoon() {
-        Optional<UnitaDiMisura> udmOptional =  udmRepository.findByUdm("Tablespoon");
-        assertEquals("Tablespoon", udmOptional.get().getUdm());
+    void findByUdmKili() {
+        Optional<UnitaDiMisura> udmOptional =  udmRepository.findByUdm("kili");
+        assertEquals("kili", udmOptional.get().getUdm());
     }
 
     @Test
-    void findByUdmCup() {
-        Optional<UnitaDiMisura> udmOptional =  udmRepository.findByUdm("Cup");
-        assertEquals("Cup", udmOptional.get().getUdm());
+    void findByUdmLitri() {
+        Optional<UnitaDiMisura> udmOptional =  udmRepository.findByUdm("litri");
+        assertEquals("litri", udmOptional.get().getUdm());
     }
 
     @Test
-    void findByUdmPinch() {
-        Optional<UnitaDiMisura> udmOptional =  udmRepository.findByUdm("Pinch");
-        assertEquals("Pinch", udmOptional.get().getUdm());
+    void findByUdmMillilitri() {
+        Optional<UnitaDiMisura> udmOptional =  udmRepository.findByUdm("millilitri");
+        assertEquals("millilitri", udmOptional.get().getUdm());
     }
 
     @Test
-    void findByUdmOunce() {
-        Optional<UnitaDiMisura> udmOptional =  udmRepository.findByUdm("Ounce");
-        assertEquals("Ounce", udmOptional.get().getUdm());
+    void findByUdmCucchiaio() {
+        Optional<UnitaDiMisura> udmOptional =  udmRepository.findByUdm("cucchiaio");
+        assertEquals("cucchiaio", udmOptional.get().getUdm());
+    }
+
+    @Test
+    void findByUdmCucchiaino() {
+        Optional<UnitaDiMisura> udmOptional =  udmRepository.findByUdm("cucchiaino");
+        assertEquals("cucchiaino", udmOptional.get().getUdm());
     }
 
 }

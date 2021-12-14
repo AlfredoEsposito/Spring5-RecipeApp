@@ -19,21 +19,21 @@ class CategoriaRepositoryTest {
     CategoriaRepository categoriaRepository;
 
     @Test
-    void findByNomeAmerican() {
-        Optional<Categoria> categoriaOptional = categoriaRepository.findByNome("American");
-        assertEquals("American", categoriaOptional.get().getNome());
+    void findByNomeGreca() {
+        Optional<Categoria> categoriaOptional = categoriaRepository.findByNome("Greca");
+        assertEquals("Greca", categoriaOptional.get().getNome());
     }
 
     @Test
-    void findByNomeItalian() {
-        Optional<Categoria> categoriaOptional = categoriaRepository.findByNome("Italian");
-        assertEquals("Italian", categoriaOptional.get().getNome());
+    void findByNomeItaliana() {
+        Optional<Categoria> categoriaOptional = categoriaRepository.findByNome("Italiana");
+        assertEquals("Italiana", categoriaOptional.get().getNome());
     }
 
     @Test
-    void findByNomeMexican() {
-        Optional<Categoria> categoriaOptional = categoriaRepository.findByNome("Mexican");
-        assertEquals("Mexican", categoriaOptional.get().getNome());
+    void findByNomeMessicana() {
+        Optional<Categoria> categoriaOptional = categoriaRepository.findByNome("Messicana");
+        assertEquals("Messicana", categoriaOptional.get().getNome());
     }
 
     @Test

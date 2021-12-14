@@ -1,9 +1,10 @@
-INSERT INTO categoria (nome) VALUES ('American');
-INSERT INTO categoria (nome) VALUES ('Italian');
-INSERT INTO categoria (nome) VALUES ('Mexican');
+INSERT INTO categoria (nome) VALUES ('Greca');
+INSERT INTO categoria (nome) VALUES ('Italiana');
+INSERT INTO categoria (nome) VALUES ('Messicana');
 INSERT INTO categoria (nome) VALUES ('Fast Food');
-INSERT INTO unita_di_misura (udm) VALUES ('Teaspoon');
-INSERT INTO unita_di_misura (udm) VALUES ('Tablespoon');
-INSERT INTO unita_di_misura (udm) VALUES ('Cup');
-INSERT INTO unita_di_misura (udm) VALUES ('Pinch');
-INSERT INTO unita_di_misura (udm) VALUES ('Ounce');
+INSERT INTO unita_di_misura (udm) VALUES ('grammi');
+INSERT INTO unita_di_misura (udm) VALUES ('litri');
+INSERT INTO unita_di_misura (udm) VALUES ('cucchiaio');
+INSERT INTO unita_di_misura (udm) VALUES ('cucchiaino');
+INSERT INTO unita_di_misura (udm) VALUES ('kili');
+INSERT INTO unita_di_misura (udm) VALUES ('millilitri');
