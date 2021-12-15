@@ -37,7 +37,7 @@ class RicettaServiceImplTest {
     }
 
     @Test
-    void getRicette() throws Exception{
+    void getRicetteTest() throws Exception{
         Ricetta ricetta = new Ricetta();
         HashSet ricette = new HashSet<>();
         ricette.add(ricetta);
@@ -51,16 +51,18 @@ class RicettaServiceImplTest {
     }
 
     @Test
-    void getRicettaById() {
+    void getRicettaByIdTest() {
         Ricetta ricetta = new Ricetta();
         ricetta.setId(1L);
         Optional<Ricetta> ricettaOptional = Optional.of(ricetta);
 
         when(ricettaRepository.findById(anyLong())).thenReturn(ricettaOptional);
 
-        Ricetta ricettaReturned = ricettaServiceImpl.findById(1L);
+        Ricetta ricettaReturned = ricettaServiceImpl.getRicettaById(1L);
 
         assertNotNull(ricettaReturned, "Ricetta NULL");
 
     }
+
+
 }

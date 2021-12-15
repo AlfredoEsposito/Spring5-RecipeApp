@@ -28,13 +28,17 @@
                             <tr>
                                 <th>ID</th>
                                 <th>Ricetta</th>
-                                <th>Vedi ricetta</th>
+                                <th>Nel dettaglio</th>
+                                <th>Modifica</th>
                             </tr>
                             </thead>
                             <tr th:each="ricetta : ${ricette}">
                                 <td th:text="${ricetta.id}"></td>
-                                <td th:text="${ricetta.getNomeRicetta}"></td>
-                                <td><a href="#" th:href="@{'/ricetta/show/' + ${ricetta.id}}">Vedi ricetta</a></td>
+                                <td th:text="${ricetta.nomeRicetta}"></td>
+                                <td><a href="#" th:href="@{'ricetta/'+ ${ricetta.id} +'/show'}"
+                                       th:text="'Mostra ricetta'"></a></td>
+                                <td><a href="#" th:href="@{'ricetta/'+ ${ricetta.id} +'/update'}"
+                                       th:text="'Aggiorna ricetta'"></a></td>
                             </tr>
                         </table>
                     </div>

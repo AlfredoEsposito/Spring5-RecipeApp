@@ -19,9 +19,9 @@ public class RicettaController {
     }
 
     //questo metodo mostra una ricetta per l'id, che va specificato nel @RequestMapping tra parentesi graffe dopo il percorso
-    @RequestMapping("/ricetta/show/{id}")
-    public String getRicettaById(@PathVariable String id, Model model){
-        model.addAttribute("ricetta", ricettaService.findById(Long.valueOf(id)));
+    @RequestMapping("ricetta/{id}/show")
+    public String showRicettaById(@PathVariable String id, Model model){
+        model.addAttribute("ricetta", ricettaService.getRicettaById(Long.valueOf(id)));
         return "ricetta/show";
     }
 
@@ -31,12 +31,17 @@ public class RicettaController {
         return "ricetta/ricettaform";
     }
 
-    @PostMapping //il verbo è Post, perchè si invia una form
-    @RequestMapping("ricetta")
+    @PostMapping("ricetta") //il verbo è Post, perchè si invia una form
     public String saveOrUpdateRicetta(@ModelAttribute RicettaCommand ricettaCommand){
         RicettaCommand ricettaCommandToSaveOrUpdate = ricettaService.saveRicettaCommand(ricettaCommand);
-        return "redirect:/ricetta/show/" + ricettaCommandToSaveOrUpdate.getId();
+        return "redirect:/ricetta/"+ricettaCommandToSaveOrUpdate.getId()+"/show";
         // redirect è un comando che indica a spring mvc di reindirizzare a un url specifico. in questo caso avremo un redirect alla pagina di view "show" della ricetta salvata
+    }
+
+    @RequestMapping("ricetta/{id}/update")
+    public String updateRicetta(@PathVariable String id, Model model){
+        model.addAttribute("ricetta", ricettaService.getCommandById(Long.valueOf(id)));
+        return "ricetta/ricettaform";
     }
 
 

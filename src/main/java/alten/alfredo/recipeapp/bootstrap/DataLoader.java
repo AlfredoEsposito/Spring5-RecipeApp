@@ -1,6 +1,7 @@
 package alten.alfredo.recipeapp.bootstrap;
 
 import alten.alfredo.recipeapp.enumeration.Difficolta;
+import alten.alfredo.recipeapp.model.Note;
 import alten.alfredo.recipeapp.model.Ricetta;
 import alten.alfredo.recipeapp.repositories.RicettaRepository;
 import lombok.extern.slf4j.Slf4j;
@@ -35,6 +36,7 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
         pizzafritta.setDifficolta(Difficolta.MEDIA);
         pizzafritta.setTempoPreparazione(20);
         pizzafritta.setTempoCottura(7);
+        pizzafritta.setNote(new Note());
         ricette.add(pizzafritta);
 
         Ricetta spaghettiVongole = new Ricetta();
@@ -42,6 +44,7 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
         spaghettiVongole.setDifficolta(Difficolta.FACILE);
         spaghettiVongole.setTempoPreparazione(30);
         spaghettiVongole.setTempoCottura(15);
+        spaghettiVongole.setNote(new Note());
         ricette.add(spaghettiVongole);
 
         return ricette;

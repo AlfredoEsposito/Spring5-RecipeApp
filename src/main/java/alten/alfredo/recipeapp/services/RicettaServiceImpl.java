@@ -36,13 +36,15 @@ public class RicettaServiceImpl implements RicettaService{
     }
 
     @Override
-    public Ricetta findById(Long l) {
+    public Ricetta getRicettaById(Long l) {
         Optional<Ricetta> ricetta = ricettaRepository.findById(l);
         if(!ricetta.isPresent()){
             throw new RuntimeException("Ricetta non trovata!");
         }
         return ricetta.get();
     }
+
+    //METODI TRANSACTIONAL PERCHE' STIAMO FACENDO UNA CONVERSIONE AL DI FUORI DEL CONTESTO SPRING
 
     @Override
     @Transactional
@@ -51,5 +53,11 @@ public class RicettaServiceImpl implements RicettaService{
         Ricetta ricettaSaved = ricettaRepository.save(ricetta);
         log.debug("id ricetta slavata : " +ricettaSaved.getId());
         return ricettaToRicettaCommand.convert(ricettaSaved);
+    }
+
+    @Override
+    @Transactional
+    public RicettaCommand getCommandById(Long l) {
+        return ricettaToRicettaCommand.convert(getRicettaById(l));
     }
 }
