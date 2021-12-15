@@ -64,5 +64,11 @@ class RicettaServiceImplTest {
 
     }
 
-
+    // i test dei metodi con void come tipo di ritorno non hanno la clausola "when"
+    @Test
+    void deleteRicettaByIdTest() {
+        Long idToDelete = 2L;
+        ricettaServiceImpl.deleteRicettaById(idToDelete);
+        verify(ricettaRepository, times(1)).deleteById(anyLong());
+    }
 }

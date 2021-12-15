@@ -13,7 +13,7 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyLong;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
@@ -67,7 +67,7 @@ class RicettaControllerTest {
                 .param("id", "")
                 .param("nomeRicetta", "stringa qualsiasi"))
                 .andExpect(status().is3xxRedirection())
-                .andExpect(view().name("redirect:/ricetta/show/2"));
+                .andExpect(view().name("redirect:/ricetta/2/show"));
     }
 
     @Test
@@ -79,5 +79,13 @@ class RicettaControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(view().name("ricetta/ricettaform"))
                 .andExpect(model().attributeExists("ricetta"));
+    }
+
+    @Test
+    void deleteRicettaByIdTest() throws Exception{
+        mockMvc.perform(get("/ricetta/1/deleteRicetta"))
+                .andExpect(status().is3xxRedirection())
+                .andExpect(view().name("redirect:/"));
+        verify(ricettaService, times(1)).deleteRicettaById(anyLong());
     }
 }

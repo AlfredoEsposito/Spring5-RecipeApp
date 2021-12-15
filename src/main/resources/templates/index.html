@@ -30,6 +30,7 @@
                                 <th>Ricetta</th>
                                 <th>Nel dettaglio</th>
                                 <th>Modifica</th>
+                                <th>Elimina</th>
                             </tr>
                             </thead>
                             <tr th:each="ricetta : ${ricette}">
@@ -39,6 +40,8 @@
                                        th:text="'Mostra ricetta'"></a></td>
                                 <td><a href="#" th:href="@{'ricetta/'+ ${ricetta.id} +'/update'}"
                                        th:text="'Aggiorna ricetta'"></a></td>
+                                <td><a href="#" th:href="@{'ricetta/'+ ${ricetta.id} +'/deleteRicetta'}"
+                                       th:text="'Elimina ricetta'"></a></td>
                             </tr>
                         </table>
                     </div>

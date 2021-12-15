@@ -11,4 +11,5 @@ public interface RicettaService {
     Ricetta getRicettaById(Long l);
     RicettaCommand saveRicettaCommand(RicettaCommand ricettaCommand);
     RicettaCommand getCommandById(Long l);
+    void deleteRicettaById(long l);
 }

@@ -60,4 +60,9 @@ public class RicettaServiceImpl implements RicettaService{
     public RicettaCommand getCommandById(Long l) {
         return ricettaToRicettaCommand.convert(getRicettaById(l));
     }
+
+    @Override
+    public void deleteRicettaById(long l) {
+        ricettaRepository.deleteById(l);
+    }
 }
