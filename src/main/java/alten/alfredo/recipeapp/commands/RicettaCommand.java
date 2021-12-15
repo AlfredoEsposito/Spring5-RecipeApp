@@ -16,12 +16,12 @@ import java.util.Set;
 public class RicettaCommand {
 
     private Long id;
-    private String descrizione;
+    private String nomeRicetta;
     private Integer tempoPreparazione;
     private Integer tempoCottura;
     private Integer porzioni;
     private String url;
-    private String directions;
+    private String procedimento;
     private Note note;
     private Set<Ingrediente> ingredienti;
     private Difficolta difficolta;

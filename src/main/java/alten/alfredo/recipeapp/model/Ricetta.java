@@ -16,14 +16,14 @@ public class Ricetta {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String descrizione;
+    private String nomeRicetta;
     private Integer tempoPreparazione;
     private Integer tempoCottura;
     private Integer porzioni;
     private String url;
 
     @Lob
-    private String directions;
+    private String procedimento;
 
     //L'annotation @Lob indica un attributo di un'entità di grandi dimensioni. Ha due varianti : CLOB e BLOB
     @Lob

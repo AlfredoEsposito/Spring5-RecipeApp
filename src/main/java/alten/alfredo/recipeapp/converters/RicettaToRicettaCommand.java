@@ -20,12 +20,12 @@ public class RicettaToRicettaCommand implements Converter<Ricetta, RicettaComman
         }
         final RicettaCommand ricettaCommand = new RicettaCommand();
         ricettaCommand.setId(source.getId());
-        ricettaCommand.setDescrizione(source.getDescrizione());
+        ricettaCommand.setNomeRicetta(source.getNomeRicetta());
         ricettaCommand.setTempoPreparazione(source.getTempoPreparazione());
         ricettaCommand.setTempoCottura(source.getTempoCottura());
         ricettaCommand.setPorzioni(source.getPorzioni());
         ricettaCommand.setUrl(source.getUrl());
-        ricettaCommand.setDirections(source.getDirections());
+        ricettaCommand.setProcedimento(source.getProcedimento());
         ricettaCommand.setNote(source.getNote());
         ricettaCommand.setDifficolta(source.getDifficolta());
 

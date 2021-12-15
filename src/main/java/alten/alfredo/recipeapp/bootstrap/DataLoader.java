@@ -31,14 +31,14 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
         List<Ricetta> ricette = new ArrayList<>();
 
         Ricetta pizzafritta = new Ricetta();
-        pizzafritta.setDescrizione("Pizza Fritta");
+        pizzafritta.setNomeRicetta("Pizza Fritta");
         pizzafritta.setDifficolta(Difficolta.MEDIA);
         pizzafritta.setTempoPreparazione(20);
         pizzafritta.setTempoCottura(7);
         ricette.add(pizzafritta);
 
         Ricetta spaghettiVongole = new Ricetta();
-        spaghettiVongole.setDescrizione("Spaghetti alle vongole");
+        spaghettiVongole.setNomeRicetta("Spaghetti alle vongole");
         spaghettiVongole.setDifficolta(Difficolta.FACILE);
         spaghettiVongole.setTempoPreparazione(30);
         spaghettiVongole.setTempoCottura(15);

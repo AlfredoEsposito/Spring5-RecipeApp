@@ -33,7 +33,7 @@
                             </thead>
                             <tr th:each="ricetta : ${ricette}">
                                 <td th:text="${ricetta.id}"></td>
-                                <td th:text="${ricetta.descrizione}"></td>
+                                <td th:text="${ricetta.getNomeRicetta}"></td>
                                 <td><a href="#" th:href="@{'/ricetta/show/' + ${ricetta.id}}">Vedi ricetta</a></td>
                             </tr>
                         </table>
