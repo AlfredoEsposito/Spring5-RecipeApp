@@ -1,13 +1,11 @@
 package alten.alfredo.recipeapp.commands;
 
 import alten.alfredo.recipeapp.enumeration.Difficolta;
-import alten.alfredo.recipeapp.model.Categoria;
-import alten.alfredo.recipeapp.model.Ingrediente;
-import alten.alfredo.recipeapp.model.Note;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.HashSet;
 import java.util.Set;
 
 @Getter
@@ -22,10 +20,10 @@ public class RicettaCommand {
     private Integer porzioni;
     private String url;
     private String procedimento;
-    private Note note;
-    private Set<Ingrediente> ingredienti;
+    private NoteCommand note;
+    private Set<IngredienteCommand> ingredienti = new HashSet<>();
     private Difficolta difficolta;
-    private Set<Categoria> categorie;
+    private Set<CategoriaCommand> categorie = new HashSet<>();
 
 
 

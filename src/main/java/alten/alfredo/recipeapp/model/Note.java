@@ -1,10 +1,12 @@
 package alten.alfredo.recipeapp.model;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 import javax.persistence.*;
 
 @Data
+@EqualsAndHashCode(exclude = "ricetta")
 @Entity
 public class Note {
 

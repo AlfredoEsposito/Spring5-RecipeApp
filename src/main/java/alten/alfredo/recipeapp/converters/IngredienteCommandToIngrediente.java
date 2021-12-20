@@ -10,6 +10,12 @@ import org.springframework.stereotype.Component;
 @Component
 public class IngredienteCommandToIngrediente implements Converter<IngredienteCommand, Ingrediente> {
 
+    private  final UnitaDiMisuraCommandToUnitaDiMisura udmConverter;
+
+    public IngredienteCommandToIngrediente(UnitaDiMisuraCommandToUnitaDiMisura udmConverter) {
+        this.udmConverter = udmConverter;
+    }
+
     @Synchronized
     @Nullable
     @Override
@@ -21,7 +27,7 @@ public class IngredienteCommandToIngrediente implements Converter<IngredienteCom
         ingrediente.setId(source.getId());
         ingrediente.setDescrizione(source.getDescrizione());
         ingrediente.setQuantita(source.getQuantita());
-        ingrediente.setUnitaDiMisura(source.getUnitaDiMisura());
+        ingrediente.setUnitaDiMisura(udmConverter.convert(source.getUnitaDiMisura()));
         return ingrediente;
     }
 }

@@ -2,12 +2,14 @@ package alten.alfredo.recipeapp.model;
 
 import alten.alfredo.recipeapp.enumeration.Difficolta;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
 @Data
+@EqualsAndHashCode(exclude = "ingredienti")
 @Entity
 public class Ricetta {
 
@@ -46,6 +48,18 @@ public class Ricetta {
     @ManyToMany
     @JoinTable(name = "Ricetta_Categoria",
         joinColumns = @JoinColumn(name = "id_ricetta"), inverseJoinColumns = @JoinColumn(name = "id_categoria"))
-    private Set<Categoria> categorie;
+    private Set<Categoria> categorie = new HashSet<>();
 
+    public void setNote(Note note){
+        if(note != null){
+            this.note=note;
+            note.setRicetta(this);
+        }
+    }
+
+    public Ricetta addIngredienti(Ingrediente ingrediente){
+        ingrediente.setRicetta(this);
+        this.ingredienti.add(ingrediente);
+        return this;
+    }
 }
