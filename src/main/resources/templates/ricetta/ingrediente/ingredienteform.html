@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Modifica ingrediente</title>
+
+    <!--BOOTSRTAP-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"
+          th:href="@{/webjars/bootstrap/3.3.7/css/bootstrap.min.css}">
+
+    <script src="/webjars/jquery/3.2.1/jquery.min.js"></script>
+</head>
+<body>
+
+<div class="container-fluid" style="margin-top: 20px">
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <!--/*@thymesVar id="ingrediente" type="alten.alfredo.recipeapp.commands.IngredienteCommand"*/-->
+            <form  th:object="${ingrediente}" th:action="@{'/ricetta/' + ${ingrediente.getIdRicetta()} + '/ingrediente'} " method="post">
+                <input type="hidden" th:field="*{id}"/>
+                <div class="pannel-group">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <h1 class="panel-title">Modifica le informazioni dell'ingrediente</h1>
+                        </div>
+                        <div class="panel-body">
+
+
+                            <div class="row">
+                                <div class="col-md-3 form-group">
+                                    <label>Descrizione:</label>
+                                    <input type="text" class="form-control" th:field="*{descrizione}"/>
+                                </div>
+
+                                <div class="col-md-3 form-group">
+                                    <label>Quantità:</label>
+                                    <input type="number" class="form-control" th:field="*{quantita}"/>
+                                </div>
+
+                                <div class="col-md-3 form-group">
+                                    <label>UOM:</label>
+                                    <select class="form-control" name="unitaDiMisura.id">
+                                        <option th:each="unitaDiMisura : ${unitaDiMisuraList}"
+                                                th:value="${unitaDiMisura.id}"
+                                                th:selected="${unitaDiMisura.id.equals(ingrediente.unitaDiMisura.id)}"
+                                                th:text="${unitaDiMisura.udm}"></option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Invia</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -16,6 +16,6 @@ public class UnitaDiMisura {
     private Long id;
     private String udm;
 
-    //relazione 1:1 unidirezionale il che significa che non dichiaro nessun attributo della classe concorrente
+    //relazione 1:1 unidirezionale il che significa che non dichiaro nessun attributo della classe concorrente, in questo caso con Ingrediente
 
 }

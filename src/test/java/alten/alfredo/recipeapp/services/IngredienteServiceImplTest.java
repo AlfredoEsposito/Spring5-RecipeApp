@@ -1,11 +1,14 @@
 package alten.alfredo.recipeapp.services;
 
 import alten.alfredo.recipeapp.commands.IngredienteCommand;
+import alten.alfredo.recipeapp.converters.IngredienteCommandToIngrediente;
 import alten.alfredo.recipeapp.converters.IngredienteToIngredienteCommand;
+import alten.alfredo.recipeapp.converters.UnitaDiMisuraCommandToUnitaDiMisura;
 import alten.alfredo.recipeapp.converters.UnitaDiMisuraToUnitaDiMisuraCommand;
 import alten.alfredo.recipeapp.model.Ingrediente;
 import alten.alfredo.recipeapp.model.Ricetta;
 import alten.alfredo.recipeapp.repositories.RicettaRepository;
+import alten.alfredo.recipeapp.repositories.UnitaDiMisuraRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
@@ -14,6 +17,7 @@ import org.mockito.MockitoAnnotations;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.when;
 
@@ -24,16 +28,22 @@ class IngredienteServiceImplTest {
     @Mock
     RicettaRepository ricettaRepository;
 
-    private final IngredienteToIngredienteCommand ingredienteConverter;
+    @Mock
+    UnitaDiMisuraRepository udmRepository;
+
+    private final IngredienteToIngredienteCommand ingredienteToIngredienteCommand;
+    private final IngredienteCommandToIngrediente ingredienteCommandToIngrediente;
+
 
     public IngredienteServiceImplTest() {
-        this.ingredienteConverter = new IngredienteToIngredienteCommand(new UnitaDiMisuraToUnitaDiMisuraCommand());
+        this.ingredienteToIngredienteCommand = new IngredienteToIngredienteCommand(new UnitaDiMisuraToUnitaDiMisuraCommand());
+        this.ingredienteCommandToIngrediente = new IngredienteCommandToIngrediente(new UnitaDiMisuraCommandToUnitaDiMisura());
     }
 
     @BeforeEach
     void setUp() {
         MockitoAnnotations.initMocks(this);
-        ingredienteService = new IngredienteServiceImpl(ingredienteConverter,ricettaRepository);
+        ingredienteService = new IngredienteServiceImpl(ingredienteToIngredienteCommand, ingredienteCommandToIngrediente, ricettaRepository, udmRepository);
     }
 
     @Test
@@ -59,5 +69,25 @@ class IngredienteServiceImplTest {
         assertEquals(Long.valueOf(3L), ingredienteCommand.getId());
         assertEquals(Long.valueOf(1L), ingredienteCommand.getIdRicetta());
 
+    }
+
+    @Test
+    void saveIngredienteCommandTest() {
+        IngredienteCommand ingredienteCommand = new IngredienteCommand();
+        ingredienteCommand.setId(2L);
+        ingredienteCommand.setIdRicetta(2L);
+
+        Optional<Ricetta> ricettaOptional = Optional.of(new Ricetta());
+
+        Ricetta savedRicetta = new Ricetta();
+        savedRicetta.addIngredienti(new Ingrediente());
+        savedRicetta.getIngredienti().stream().iterator().next().setId(2L);
+
+        when(ricettaRepository.findById(anyLong())).thenReturn(ricettaOptional);
+        when(ricettaRepository.save(any())).thenReturn(savedRicetta);
+
+        IngredienteCommand savedIngredienteCommand = ingredienteService.saveIngredienteCommand(ingredienteCommand);
+
+        assertEquals(Long.valueOf(2L), savedIngredienteCommand.getId());
     }
 }
