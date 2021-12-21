@@ -69,14 +69,25 @@ public class IngredienteServiceImpl implements IngredienteService{
                         .findById(ingredienteCommand.getUnitaDiMisura().getId())
                         .orElseThrow(()-> new RuntimeException("Unità di misura non trovata!")));
             }else{
-                ricetta.addIngredienti(ingredienteCommandToIngrediente.convert(ingredienteCommand));
+                //add new ingredient
+                Ingrediente ingrediente = ingredienteCommandToIngrediente.convert(ingredienteCommand);
+                ingrediente.setRicetta(ricetta);
+                ricetta.addIngredienti(ingrediente);
             }
-            Ricetta ricettaToSave = ricettaRepository.save(ricetta);
+            Ricetta ricettaSaved = ricettaRepository.save(ricetta);
 
-            return ingredienteToIngredienteCommand.convert(ricettaToSave.getIngredienti().stream()
-                    .filter(ingredientiRicetta -> ingredientiRicetta.getId().equals(ingredienteCommand.getId()))
-                    .findFirst().get());
+            Optional<Ingrediente> ingredienteSaved = ricettaSaved.getIngredienti().stream()
+                    .filter(ingredientiRicetta -> ingredientiRicetta.getId().equals(ingredienteCommand.getId())).findFirst();
+
+            //check by nome descrizione
+            if(!ingredienteSaved.isPresent()){
+                ingredienteSaved = ricettaSaved.getIngredienti().stream()
+                        .filter(ingredientiRicetta -> ingredientiRicetta.getDescrizione().equalsIgnoreCase(ingredienteCommand.getDescrizione()))
+                        .filter(ingredientiRicetta -> ingredientiRicetta.getQuantita().equals(ingredienteCommand.getQuantita()))
+                        .filter(ingredientiRicetta -> ingredientiRicetta.getUnitaDiMisura().getId().equals(ingredienteCommand.getUnitaDiMisura().getId()))
+                        .findFirst();
+            }
+            return ingredienteToIngredienteCommand.convert(ingredienteSaved.get());
         }
-
     }
 }

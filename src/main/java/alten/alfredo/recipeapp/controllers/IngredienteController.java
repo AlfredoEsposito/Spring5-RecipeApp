@@ -1,6 +1,8 @@
 package alten.alfredo.recipeapp.controllers;
 
 import alten.alfredo.recipeapp.commands.IngredienteCommand;
+import alten.alfredo.recipeapp.commands.RicettaCommand;
+import alten.alfredo.recipeapp.commands.UnitaDiMisuraCommand;
 import alten.alfredo.recipeapp.services.IngredienteService;
 import alten.alfredo.recipeapp.services.RicettaService;
 import alten.alfredo.recipeapp.services.UnitaDiMisuraService;
@@ -55,6 +57,24 @@ public class IngredienteController {
         log.debug("Id ingrediente salvato: "+ingredienteCommandToSaveOrUpdate.getId());
         log.debug("Id ricetta dell'ingrediente salvato: "+ingredienteCommandToSaveOrUpdate.getIdRicetta());
         return "redirect:/ricetta/"+ingredienteCommandToSaveOrUpdate.getIdRicetta()+"/ingrediente/"+ingredienteCommandToSaveOrUpdate.getId()+"/show";
+    }
+
+    @GetMapping
+    @RequestMapping("ricetta/{idRicetta}/ingrediente/new")
+    public String newIngrediente(@PathVariable String idRicetta, Model model){
+        //assicuriamoci di avere un id valido
+        RicettaCommand ricettaCommand = ricettaService.getCommandById(Long.valueOf(idRicetta));
+
+        //nuovo ingrediente
+        IngredienteCommand ingredienteCommand = new IngredienteCommand();
+        ingredienteCommand.setIdRicetta(ricettaCommand.getId());
+        model.addAttribute("ingrediente", ingredienteService.saveIngredienteCommand(ingredienteCommand));
+
+        //init udm
+        ingredienteCommand.setUnitaDiMisura(new UnitaDiMisuraCommand());
+        model.addAttribute("udmLIst", udmService.listAllUdm());
+
+        return "ricetta/ingrediente/ingredienteform";
     }
 
 }
