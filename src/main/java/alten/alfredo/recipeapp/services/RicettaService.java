@@ -8,8 +8,8 @@ import java.util.Set;
 public interface RicettaService {
 
     Set<Ricetta> getRicette();
-    Ricetta getRicettaById(Long l);
+    Ricetta getRicettaById(Long id);
     RicettaCommand saveRicettaCommand(RicettaCommand ricettaCommand);
-    RicettaCommand getCommandById(Long l);
-    void deleteRicettaById(long l);
+    RicettaCommand getCommandById(Long id);
+    void deleteRicettaById(long id);
 }

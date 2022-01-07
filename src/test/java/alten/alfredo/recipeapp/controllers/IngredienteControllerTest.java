@@ -8,6 +8,7 @@ import alten.alfredo.recipeapp.services.UnitaDiMisuraService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
@@ -15,6 +16,7 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyLong;
+import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
@@ -78,5 +80,13 @@ class IngredienteControllerTest {
                 .param("descrizione", "stringa qualsiasi"))
                 .andExpect(status().is3xxRedirection())
                 .andExpect(view().name("redirect:/ricetta/1/ingrediente/1/show"));
+    }
+
+    @Test
+    void deleteIngredienteTest() throws Exception{
+        mockMvc.perform(get("/ricetta/1/ingrediente/1/delete"))
+                .andExpect(status().is3xxRedirection())
+                .andExpect(view().name("redirect:/ricetta/1/ingredienti"));
+        Mockito.verify(ingredienteService, times(1)).deleteIngredienteById(anyLong(), anyLong());
     }
 }

@@ -9,6 +9,7 @@ import alten.alfredo.recipeapp.repositories.RicettaRepository;
 import alten.alfredo.recipeapp.repositories.UnitaDiMisuraRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
 
@@ -48,6 +49,7 @@ public class IngredienteServiceImpl implements IngredienteService{
     }
 
     @Override
+    @Transactional
     public IngredienteCommand saveIngredienteCommand(IngredienteCommand ingredienteCommand) {
         Optional<Ricetta> ricettaOptional = ricettaRepository.findById(ingredienteCommand.getIdRicetta());
         if(!ricettaOptional.isPresent()){
@@ -88,6 +90,26 @@ public class IngredienteServiceImpl implements IngredienteService{
                         .findFirst();
             }
             return ingredienteToIngredienteCommand.convert(ingredienteSaved.get());
+        }
+    }
+
+    @Override
+    public void deleteIngredienteById(Long idIngrediente, Long idRicetta) {
+        Optional<Ricetta> ricettaOptional = ricettaRepository.findById(idRicetta);
+        if(!ricettaOptional.isPresent()){
+            log.error("Ricetta non trovata");
+        }else{
+            Ricetta ricetta = ricettaOptional.get();
+            Optional<Ingrediente> ingredienteOptional = ricetta.getIngredienti().stream()
+                    .filter(ingrediente -> ingrediente.getId().equals(idIngrediente)).findFirst();
+            if(ingredienteOptional.isPresent()){
+                Ingrediente ingredienteToDelete = ingredienteOptional.get();
+                ingredienteToDelete.setRicetta(null);
+                ricetta.getIngredienti().remove(ingredienteOptional.get());
+                ricettaRepository.save(ricetta);
+            }else{
+                log.error("Ingrediente non trovato");
+            }
         }
     }
 }

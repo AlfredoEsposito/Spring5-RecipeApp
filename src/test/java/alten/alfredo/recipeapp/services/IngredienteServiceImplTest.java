@@ -90,4 +90,8 @@ class IngredienteServiceImplTest {
 
         assertEquals(Long.valueOf(2L), savedIngredienteCommand.getId());
     }
+
+    @Test
+    void deleteIngredienteByIdTest() {
+    }
 }
