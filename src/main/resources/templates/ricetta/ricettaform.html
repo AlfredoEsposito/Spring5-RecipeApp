@@ -61,10 +61,11 @@
                                 </div>
                                 <div class="col-md-3 form-group">
                                     <label>Difficoltà:</label>
-                                    <select class="form-control">
-                                        <option>Facile</option>
-                                        <option>Media</option>
-                                        <option>Difficile</option>
+                                    <select class="form-control" th:field="*{difficolta}">
+                                        <option th:each="difficoltaValue : ${T(alten.alfredo.recipeapp.enumeration.Difficolta).values()}"
+                                                th:value="${difficoltaValue.name()}"
+                                                th:text="${difficoltaValue.name()}"
+                                        >Difficoltà</option>
                                     </select>
                                 </div>
                             </div>
